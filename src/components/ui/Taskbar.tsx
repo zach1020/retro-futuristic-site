@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { WindowState } from '../../context/WindowManagerContext';
+import { useTime } from '../../context/TimeContext';
 import { Monitor } from 'lucide-react';
 import { StartMenu } from './StartMenu';
 
@@ -12,15 +13,10 @@ interface TaskbarProps {
 }
 
 export const Taskbar: React.FC<TaskbarProps> = ({ windows, activeWindowId, onRestore, onLaunchApp, onShutdown }) => {
-    const [time, setTime] = useState(new Date());
+    const { time } = useTime();
     const [isStartOpen, setIsStartOpen] = useState(false);
     const startMenuRef = useRef<HTMLDivElement>(null);
     const startButtonRef = useRef<HTMLButtonElement>(null);
-
-    useEffect(() => {
-        const timer = setInterval(() => setTime(new Date()), 1000);
-        return () => clearInterval(timer);
-    }, []);
 
     // Close start menu when clicking outside
     useEffect(() => {
@@ -91,6 +87,7 @@ export const Taskbar: React.FC<TaskbarProps> = ({ windows, activeWindowId, onRes
                 {windows.map((win) => (
                     <button
                         key={win.id}
+                        id={`taskbar-btn-${win.id}`}
                         className={`win98-btn ${activeWindowId === win.id && !win.isMinimized ? 'active' : ''}`}
                         onClick={() => onRestore(win.id)}
                         style={{

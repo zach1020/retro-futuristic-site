@@ -211,12 +211,13 @@ export const MusicApp: React.FC = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                fontFamily: 'Monaco, monospace'
+                fontFamily: 'Monaco, monospace',
+                gap: '8px'
             }}>
-                <span style={{ whiteSpace: 'nowrap', overflow: 'hidden' }}>
+                <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', flex: 1, minWidth: 0 }}>
                     {isPlaying ? `PLAYING: ${currentTrack.title}` : `STOPPED: ${currentTrack.title}`}
                 </span>
-                <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
+                <span style={{ flexShrink: 0 }}>{formatTime(currentTime)} / {formatTime(duration)}</span>
             </div>
 
             {/* Visualizer */}

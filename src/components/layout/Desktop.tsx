@@ -3,6 +3,8 @@ import { useWindowManager } from '../../context/WindowManagerContext';
 import { Window } from '../ui/Window';
 import { Taskbar } from '../ui/Taskbar';
 import { DesktopIcon } from '../ui/DesktopIcon';
+import { Sun } from '../ui/Sun';
+import { Moon } from '../ui/Moon';
 import { User, Briefcase, Music, BookOpen, Settings, Brush } from 'lucide-react';
 import { BioApp } from '../../apps/BioApp';
 import { ProjectsApp } from '../../apps/ProjectsApp';
@@ -36,7 +38,7 @@ export const Desktop: React.FC = () => {
     const launchMusic = () => {
         openWindow('music', 'WinAmp 98', (
             <MusicApp />
-        ), { x: 200, y: 110 }, { width: 350, height: 500 });
+        ), { x: 200, y: 110 }, { width: 480, height: 320 });
     };
 
     const launchBlog = () => {
@@ -48,7 +50,7 @@ export const Desktop: React.FC = () => {
     const launchSettings = () => {
         openWindow('settings', 'Control Panel', (
             <SettingsApp />
-        ), { x: 300, y: 170 }, { width: 400, height: 350 });
+        ), { x: 300, y: 170 }, { width: 500, height: 550 });
     };
 
     const launchSystemInfo = () => {
@@ -77,8 +79,10 @@ export const Desktop: React.FC = () => {
 
     // Auto-launch Music App
     React.useEffect(() => {
-        launchMusic();
-    }, []);
+        if (!isMobile) {
+            launchMusic();
+        }
+    }, [isMobile]);
 
     if (isShutdown) {
         return (
@@ -126,6 +130,27 @@ export const Desktop: React.FC = () => {
                 ['--win-text' as any]: currentBackground.windowTheme?.textColor || '#000000',
             }}
         >
+            {/* Sky / Sun Layer - Clipped by "ground" (desktop icons area) */}
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                // Actually, user wants it cut off by the "horizontal line drawn by the icons"
+                // Let's assume the icons start around bottom 100px.
+                // We'll make this container full height but handle z-index carefully?
+                // Or just use overflow hidden on a top section.
+                // Let's adjust height to be "Sky" height.
+                height: '85%',
+                overflow: 'hidden',
+                pointerEvents: 'none',
+                // ... (in render)
+                zIndex: 0
+            }}>
+                <Sun />
+                <Moon />
+            </div>
+
             {/* Palm Overlay */}
             <div
                 style={{
@@ -142,6 +167,10 @@ export const Desktop: React.FC = () => {
                     zIndex: 0
                 }}
             />
+
+            {/* Retro Effects */}
+            <div className="retro-sparkles" />
+            <div className="retro-scanlines" />
 
             {/* Desktop Icons Area */}
             <div
@@ -162,12 +191,12 @@ export const Desktop: React.FC = () => {
                 }}
             >
                 <div style={{ pointerEvents: 'auto', display: 'flex', gap: isMobile ? '16px' : '30px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <DesktopIcon label="My Computer" icon={<User size={32} />} onClick={launchBio} />
-                    <DesktopIcon label="Projects" icon={<Briefcase size={32} />} onClick={launchProjects} />
-                    <DesktopIcon label="Music" icon={<Music size={32} />} onClick={launchMusic} />
-                    <DesktopIcon label="Internet Blog" icon={<BookOpen size={32} />} onClick={launchBlog} />
-                    <DesktopIcon label="Community Paint" icon={<Brush size={32} />} onClick={launchPaint} />
-                    <DesktopIcon label="Settings" icon={<Settings size={32} />} onClick={launchSettings} />
+                    <DesktopIcon label="My Computer" icon={<User size={32} />} onClick={launchBio} isOpen={windows.some(w => w.id === 'bio')} />
+                    <DesktopIcon label="Projects" icon={<Briefcase size={32} />} onClick={launchProjects} isOpen={windows.some(w => w.id === 'projects')} />
+                    <DesktopIcon label="Music" icon={<Music size={32} />} onClick={launchMusic} isOpen={windows.some(w => w.id === 'music')} />
+                    <DesktopIcon label="Internet Blog" icon={<BookOpen size={32} />} onClick={launchBlog} isOpen={windows.some(w => w.id === 'blog')} />
+                    <DesktopIcon label="Community Paint" icon={<Brush size={32} />} onClick={launchPaint} isOpen={windows.some(w => w.id === 'paint')} />
+                    <DesktopIcon label="Settings" icon={<Settings size={32} />} onClick={launchSettings} isOpen={windows.some(w => w.id === 'settings')} />
                 </div>
             </div>
 

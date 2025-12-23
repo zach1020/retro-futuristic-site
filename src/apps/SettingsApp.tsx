@@ -1,8 +1,10 @@
 import React from 'react';
 import { useTheme, backgroundPresets } from '../context/ThemeContext';
+import { useTime } from '../context/TimeContext';
 
 export const SettingsApp: React.FC = () => {
     const { currentBackground, setBackground } = useTheme();
+    const { time, setTime, isSystemTime, setIsSystemTime } = useTime();
 
     return (
         <div style={{
@@ -64,6 +66,49 @@ export const SettingsApp: React.FC = () => {
                         </div>
                     ))}
                 </div>
+            </div>      {/* Date & Time Settings */}
+            <div>
+                <h2 style={{
+                    margin: '0 0 15px 0',
+                    fontSize: '18px',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+                    paddingBottom: '10px'
+                }}>
+                    Date & Time
+                </h2>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                        <input
+                            type="checkbox"
+                            checked={isSystemTime}
+                            onChange={(e) => setIsSystemTime(e.target.checked)}
+                        />
+                        Use System Time
+                    </label>
+
+                    {!isSystemTime && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <span>Time:</span>
+                            <input
+                                type="range"
+                                min="0"
+                                max="1439" // 24 * 60 - 1
+                                value={time.getHours() * 60 + time.getMinutes()}
+                                onChange={(e) => {
+                                    const minutes = parseInt(e.target.value);
+                                    const newDate = new Date(time);
+                                    newDate.setHours(Math.floor(minutes / 60));
+                                    newDate.setMinutes(minutes % 60);
+                                    setTime(newDate);
+                                }}
+                                style={{ flex: 1 }}
+                            />
+                            <span style={{ minWidth: '50px', textAlign: 'right' }}>
+                                {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div style={{
@@ -77,6 +122,6 @@ export const SettingsApp: React.FC = () => {
             }}>
                 More customization options coming soon...
             </div>
-        </div>
+        </div >
     );
 };

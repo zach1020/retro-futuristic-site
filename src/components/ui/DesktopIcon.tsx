@@ -4,9 +4,10 @@ interface DesktopIconProps {
     label: string;
     icon: React.ReactNode;
     onClick: () => void;
+    isOpen?: boolean;
 }
 
-export const DesktopIcon: React.FC<DesktopIconProps> = ({ label, icon, onClick }) => {
+export const DesktopIcon: React.FC<DesktopIconProps> = ({ label, icon, onClick, isOpen }) => {
     return (
         <div
             className="desktop-icon"
@@ -23,7 +24,7 @@ export const DesktopIcon: React.FC<DesktopIconProps> = ({ label, icon, onClick }
                 padding: '4px'
             }}
         >
-            <div style={{ marginBottom: '4px' }}>
+            <div className={`stippled-icon-effect ${isOpen ? 'active' : ''}`} style={{ marginBottom: '4px' }}>
                 {icon}
             </div>
             <span style={{ fontSize: '14px', textAlign: 'center', backgroundColor: 'transparent' }}>
