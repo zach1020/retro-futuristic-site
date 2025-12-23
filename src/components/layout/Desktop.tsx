@@ -112,9 +112,68 @@ export const Desktop: React.FC = () => {
         );
     }
 
+    // Selection Box State
+    const [selectionBox, setSelectionBox] = React.useState<{ startX: number, startY: number, currentX: number, currentY: number } | null>(null);
+
+    const handleMouseDown = (e: React.MouseEvent) => {
+        // Only start selection if clicking directly on the desktop or pseudo-elements
+        // We allow clicking on the "root" desktop div or the background layers
+        if (e.target === e.currentTarget || (e.target as HTMLElement).id === 'desktop-background') {
+            setSelectionBox({
+                startX: e.clientX,
+                startY: e.clientY,
+                currentX: e.clientX,
+                currentY: e.clientY
+            });
+        }
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (selectionBox) {
+            setSelectionBox(prev => prev ? { ...prev, currentX: e.clientX, currentY: e.clientY } : null);
+        }
+    };
+
+    const handleMouseUp = () => {
+        setSelectionBox(null);
+    };
+
+    // Calculate selection box dimensions
+    const getSelectionBoxStyle = () => {
+        if (!selectionBox) return {};
+        const { startX, startY, currentX, currentY } = selectionBox;
+        const left = Math.min(startX, currentX);
+        const top = Math.min(startY, currentY);
+        const width = Math.abs(currentX - startX);
+        const height = Math.abs(currentY - startY);
+
+        // Use theme colors
+        const borderColor = currentBackground.windowTheme?.titleBar || 'rgba(255, 255, 255, 0.7)';
+        // Use color-mix to add transparency to the theme color for the background
+        const backgroundColor = currentBackground.windowTheme?.titleBar
+            ? `color-mix(in srgb, ${currentBackground.windowTheme.titleBar} 30%, transparent)`
+            : 'rgba(0, 120, 215, 0.3)';
+
+        return {
+            left,
+            top,
+            width,
+            height,
+            position: 'absolute' as const,
+            border: `1px dotted ${borderColor}`,
+            backgroundColor,
+            pointerEvents: 'none' as const,
+            zIndex: 10 // Above icons, below windows
+        };
+    };
+
     return (
         <div
             className="desktop"
+            id="desktop-background"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
             style={{
                 width: '100vw',
                 height: '100vh',
@@ -171,6 +230,9 @@ export const Desktop: React.FC = () => {
             {/* Retro Effects */}
             <div className="retro-sparkles" />
             <div className="retro-scanlines" />
+
+            {/* Selection Box */}
+            {selectionBox && <div style={getSelectionBoxStyle()} />}
 
             {/* Desktop Icons Area */}
             <div
