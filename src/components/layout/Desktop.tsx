@@ -207,7 +207,7 @@ export const Desktop: React.FC = () => {
                 // We'll make this container full height but handle z-index carefully?
                 // Or just use overflow hidden on a top section.
                 // Let's adjust height to be "Sky" height.
-                height: '85%',
+                height: '77.5%',
                 overflow: 'hidden',
                 pointerEvents: 'none',
                 // ... (in render)
