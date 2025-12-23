@@ -1,0 +1,200 @@
+:root {
+  /* Poolsuite / Mac Classic Palette */
+  --win-bg: #ffccbc;
+  /* Peach background */
+  --win-bg-deep: #eab0a0;
+
+  --win-gray: #fffdf9;
+  /* Cream/White for windows */
+  --win-gray-light: #ffffff;
+  --win-gray-dark: #000000;
+  /* Sharp borders */
+
+  --win-black: #000000;
+  --win-white: #ffffff;
+
+  /* Title bar stripes */
+  --win-title-bg: #fffdf9;
+  --win-title-text: #000000;
+
+  /* Accents */
+  --accent-pink: #ffb7b2;
+  --accent-green: #c7f9cc;
+  --accent-blue: #a0e7e5;
+
+  /* Typography */
+  --font-main: 'Geneva', 'Verdana', sans-serif;
+  --font-mono: 'Monaco', 'Courier New', monospace;
+
+  /* Borders & Shadows */
+  --border-width: 1px;
+  --border-standard: 1px solid #000;
+  --shadow-standard: 2px 2px 0px 0px #000;
+  /* Sharp retro shadow */
+  --shadow-deep: 4px 4px 0px 0px #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--win-bg);
+  /* Dither pattern overlay */
+  background-image:
+    linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%, #000000),
+    linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%, #000000);
+  background-size: 2px 2px;
+  background-position: 0 0, 1px 1px;
+  background-blend-mode: overlay;
+  background-color: #ffccbc;
+  opacity: 1;
+
+  font-family: var(--font-main);
+  overflow: hidden;
+  user-select: none;
+  color: var(--win-black);
+}
+
+/* Helper to reset button styles */
+button {
+  font-family: inherit;
+}
+
+/* Classic Mac Window Styling */
+.win98-box {
+  background-color: var(--win-gray);
+  border: var(--border-standard);
+  box-shadow: var(--shadow-standard);
+  padding: 0;
+  border-radius: 2px;
+  color: var(--win-text);
+}
+
+.win98-btn {
+  background-color: var(--win-white);
+  border: var(--border-standard);
+  box-shadow: 1px 1px 0px 0px #000;
+  padding: 2px 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.win98-btn:active {
+  box-shadow: inset 1px 1px 0px 0px #000;
+  transform: translate(1px, 1px);
+}
+
+.win98-title-bar {
+  background-color: var(--win-white);
+  border-bottom: var(--border-standard);
+  padding: 4px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Striped pattern for active windows */
+  background-image: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      #000 2px,
+      #000 3px);
+  background-size: 100% 100%;
+}
+
+/* When not active, maybe remove stripes or fade them */
+.win98-title-bar.inactive {
+  background-image: none;
+  background-color: #eee;
+}
+
+/* Title text needs a solid background */
+.win98-title-text {
+  background: var(--win-white);
+  padding: 0 8px;
+  font-weight: bold;
+  border: 1px solid #000;
+}
+
+/* Global Scrollbar */
+::-webkit-scrollbar {
+  width: 16px;
+  /* Wider for retro feel */
+  height: 16px;
+  background: var(--win-white);
+  border-left: 1px solid #000;
+  border-top: 1px solid #000;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+  border-left: 1px solid #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 1px solid #000;
+  box-shadow: inset 1px 1px #fff, inset -1px -1px #888;
+}
+
+::-webkit-scrollbar-button {
+  background: #c0c0c0;
+  border: 1px solid #000;
+  height: 16px;
+  width: 16px;
+  box-shadow: inset 1px 1px #fff, inset -1px -1px #888;
+  display: block;
+}
+
+/* Up Arrow */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='black'><polygon points='50,30 20,70 80,70'/></svg>");
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Down Arrow */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='black'><polygon points='50,70 20,30 80,30'/></svg>");
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.retro-scrollbar {
+  scrollbar-width: auto;
+  /* Firefox */
+  scrollbar-color: #000 #fff;
+  /* Thumb, Track */
+}
+
+/* Resize Handle */
+.react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+  z-index: 100;
+}
+
+.react-resizable-handle-se {
+  background-image: linear-gradient(135deg,
+      transparent 0%, transparent 50%,
+      #000 50%, #000 55%,
+      transparent 55%, transparent 60%,
+      #000 60%, #000 65%,
+      transparent 65%, transparent 70%,
+      #000 70%, #000 75%,
+      transparent 75%, transparent 80%,
+      #000 80%, #000 85%,
+      transparent 85%);
+  width: 15px;
+  height: 15px;
+  bottom: 2px;
+  right: 2px;
+}
