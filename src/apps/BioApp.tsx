@@ -40,6 +40,11 @@ export const BioApp: React.FC = () => {
                 fontSize: '14px',
                 lineHeight: '1.5'
             }}>
+                <div style={{ marginBottom: '15px', textAlign: 'center', borderBottom: '1px dashed #999', paddingBottom: '10px' }}>
+                    <a href="/UpdatedResumeZachBohl2026.docx.pdf" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
+                        [Download Resume]
+                    </a>
+                </div>
                 <p><strong>Role:</strong> Generalist / Maker / Researcher</p>
                 <p><strong>Specialties:</strong> Low-level, Full-stack, Cybersecurity, AI</p>
                 <p><strong>Education:</strong> MS Computer Science</p>
@@ -60,6 +65,12 @@ export const BioApp: React.FC = () => {
                 <p style={{ marginBottom: '10px' }}>
                     When I'm not coding, I make music and DJ under the moniker <strong>Capybara Watanabe</strong>.
                 </p>
+
+                <div style={{ marginTop: '15px', marginBottom: '15px', textAlign: 'center', borderTop: '1px dashed #999', paddingTop: '10px' }}>
+                    <a href="/UpdatedResumeZachBohl2026.docx.pdf" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
+                        [Download Resume]
+                    </a>
+                </div>
 
                 <div style={{ marginTop: '20px', textAlign: 'center' }}>
                     <button className="win98-btn" onClick={() => window.open('mailto:bohl.zachary@gmail.com')}>Contact Me</button>
