@@ -13,6 +13,7 @@ import { BlogApp } from '../../apps/BlogApp';
 import { SystemInfoApp } from '../../apps/SystemInfoApp';
 import { PaintApp } from '../../apps/PaintApp';
 import { SettingsApp } from '../../apps/SettingsApp';
+import { CapyNotezApp } from '../../apps/CapyNotezApp';
 import { useTheme } from '../../context/ThemeContext';
 
 import { useIsMobile } from '../../hooks/useIsMobile';
@@ -61,6 +62,10 @@ export const Desktop: React.FC = () => {
         openWindow('paint', ':: COMMUNITY PAINT ::', <PaintApp />, { x: 50, y: 50 }, { width: 820, height: 700 });
     };
 
+    const launchCapyNotez = () => {
+        openWindow('capynotez', 'CapyNotezzZ', <CapyNotezApp />, { x: 350, y: 200 }, { width: 450, height: 400 });
+    };
+
     // Start Menu Handlers
     const [isShutdown, setIsShutdown] = React.useState(false);
 
@@ -73,6 +78,7 @@ export const Desktop: React.FC = () => {
             case 'settings': launchSettings(); break;
             case 'sysinfo': launchSystemInfo(); break;
             case 'paint': launchPaint(); break;
+            case 'capynotez': launchCapyNotez(); break;
             default: console.warn('Unknown app:', appId);
         }
     };
@@ -233,6 +239,11 @@ export const Desktop: React.FC = () => {
 
             {/* Selection Box */}
             {selectionBox && <div style={getSelectionBoxStyle()} />}
+
+            {/* Hidden/Easter Egg Icons */}
+            <div style={{ position: 'absolute', top: '150px', left: '230px', zIndex: 1 }}>
+                <DesktopIcon label="CapyNotezzZ" icon={<img src="/capy-icon-bw.png" alt="Capy" style={{ width: '32px', height: '32px', imageRendering: 'pixelated' }} />} onClick={launchCapyNotez} isOpen={windows.some(w => w.id === 'capynotez')} />
+            </div>
 
             {/* Desktop Icons Area */}
             <div
