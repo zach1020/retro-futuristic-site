@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
 interface TimeContextType {
     time: Date;
@@ -14,7 +14,7 @@ export const TimeProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isSystemTime, setIsSystemTime] = useState(true);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
+        let interval: ReturnType<typeof setInterval>;
 
         if (isSystemTime) {
             // Update immediately to sync
