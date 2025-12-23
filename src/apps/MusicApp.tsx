@@ -9,6 +9,10 @@ const playlist = [
     { title: "Vaguely discontented", file: "/music/Vaguely Discontented.mp3" },
     { title: "Interdimensional", file: "/music/Interdimensional.mp3" },
     { title: "Twilight chops", file: "/music/Twilight Chops.mp3" },
+    { title: "Back to the drawing board", file: "/music/Back to the Drawing Board.mp3" },
+    { title: "Rippling compression", file: "/music/Rippling Compression.mp3" },
+    { title: "Second city cafe", file: "/music/Second City Cafe.mp3" },
+    { title: "Watanabe", file: "/music/Watanabe.mp3" },
 ];
 
 export const MusicApp: React.FC = () => {
