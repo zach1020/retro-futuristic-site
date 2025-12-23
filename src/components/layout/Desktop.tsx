@@ -63,6 +63,7 @@ export const Desktop: React.FC = () => {
     };
 
     const launchCapyNotez = () => {
+        if (isMobile) return;
         openWindow('capynotez', 'CapyNotezzZ', <CapyNotezApp />, { x: 350, y: 200 }, { width: 450, height: 400 });
     };
 
@@ -241,9 +242,11 @@ export const Desktop: React.FC = () => {
             {selectionBox && <div style={getSelectionBoxStyle()} />}
 
             {/* Hidden/Easter Egg Icons */}
-            <div style={{ position: 'absolute', top: '150px', left: '230px', zIndex: 1 }}>
-                <DesktopIcon label="CapyNotezzZ" icon={<img src="/capy-icon-bw.png" alt="Capy" style={{ width: '32px', height: '32px', imageRendering: 'pixelated' }} />} onClick={launchCapyNotez} isOpen={windows.some(w => w.id === 'capynotez')} />
-            </div>
+            {!isMobile && (
+                <div style={{ position: 'absolute', top: '150px', left: '230px', zIndex: 1 }}>
+                    <DesktopIcon label="CapyNotezzZ" icon={<img src="/capy-icon-bw.png" alt="Capy" style={{ width: '32px', height: '32px', imageRendering: 'pixelated' }} />} onClick={launchCapyNotez} isOpen={windows.some(w => w.id === 'capynotez')} />
+                </div>
+            )}
 
             {/* Desktop Icons Area */}
             <div
