@@ -115,7 +115,7 @@ export const Window: React.FC<WindowProps> = ({
         <Resizable
           width={size.width}
           height={size.height}
-          onResize={(e, data) => setSize(data.size)}
+          onResize={(_, data) => setSize(data.size)}
           minConstraints={[300, 200]}
           maxConstraints={[1200, 900]}
           handle={<span className="react-resizable-handle react-resizable-handle-se" />}

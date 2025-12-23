@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { User, Briefcase, Music, BookOpen, Settings, Zap, Power, Activity, Info, Brush } from 'lucide-react';
+import { User, Briefcase, Music, BookOpen, Zap, Power, Activity, Info, Brush } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 
 interface StartMenuProps {
