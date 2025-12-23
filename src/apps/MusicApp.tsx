@@ -13,12 +13,15 @@ const playlist = [
     { title: "Rippling compression", file: "/music/Rippling Compression.mp3" },
     { title: "Second city cafe", file: "/music/Second City Cafe.mp3" },
     { title: "Watanabe", file: "/music/Watanabe.mp3" },
+    { title: "Till break of day", file: "/music/Till Break of Day.mp3" },
 ];
 
 export const MusicApp: React.FC = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [volume, setVolume] = useState(0.5);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
 
     // Audio Context Refs
     const audioContextRef = React.useRef<AudioContext | null>(null);
@@ -27,6 +30,13 @@ export const MusicApp: React.FC = () => {
     const audioRef = React.useRef<HTMLAudioElement | null>(null);
     const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
     const animationRef = React.useRef<number>(0);
+
+    const formatTime = (seconds: number) => {
+        if (!seconds || isNaN(seconds)) return "00:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
 
     const handleNext = React.useCallback(() => {
         setCurrentIndex((prev) => (prev + 1) % playlist.length);
@@ -63,17 +73,24 @@ export const MusicApp: React.FC = () => {
         };
     }, []);
 
-    // Handle 'ended' event for auto-play
+    // Handle audio events
     React.useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        const onEnded = () => {
-            handleNext();
-        };
+        const onTimeUpdate = () => setCurrentTime(audio.currentTime);
+        const onLoadedMetadata = () => setDuration(audio.duration);
+        const onEnded = () => handleNext();
 
+        audio.addEventListener('timeupdate', onTimeUpdate);
+        audio.addEventListener('loadedmetadata', onLoadedMetadata);
         audio.addEventListener('ended', onEnded);
-        return () => audio.removeEventListener('ended', onEnded);
+
+        return () => {
+            audio.removeEventListener('timeupdate', onTimeUpdate);
+            audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+            audio.removeEventListener('ended', onEnded);
+        };
     }, [handleNext]);
 
     // Volume Sync Effect
@@ -199,7 +216,7 @@ export const MusicApp: React.FC = () => {
                 <span style={{ whiteSpace: 'nowrap', overflow: 'hidden' }}>
                     {isPlaying ? `PLAYING: ${currentTrack.title}` : `STOPPED: ${currentTrack.title}`}
                 </span>
-                <span>{isPlaying ? '00:00' : '--:--'}</span>
+                <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
             </div>
 
             {/* Visualizer */}

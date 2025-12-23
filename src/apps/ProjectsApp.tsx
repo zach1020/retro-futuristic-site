@@ -1,9 +1,9 @@
 import React from 'react';
 
 const projects = [
+    { id: 7, title: 'ZPT2', desc: 'ZPT2', lang: 'TypeScript', url: 'https://github.com/zach1020/ZPT2' },
     { id: 1, title: 'ai-journal', desc: 'AI-powered journaling app', lang: 'JavaScript', url: 'https://github.com/zach1020/ai-journal' },
     { id: 2, title: 'Orthogonal-Bloch', desc: 'Quantum states visualization', lang: 'Python', url: 'https://github.com/zach1020/Orthogonal-Bloch' },
-    { id: 3, title: 'sasquatch', desc: 'Resource gathering game', lang: 'JavaScript', url: 'https://github.com/zach1020/sasquatch' },
     { id: 4, title: 'Chip-8-Emulator', desc: 'Chip-8 system emulator', lang: 'C++', url: 'https://github.com/zach1020/Chip-8-Emulator' },
     { id: 5, title: 'veryrandom', desc: 'Quantum RNG with Qiskit', lang: 'Python', url: 'https://github.com/zach1020/veryrandom' },
     { id: 6, title: 'RustybaraOS', desc: 'OS reborn in Rust', lang: 'Rust', url: 'https://github.com/zach1020/RustybaraOS' },
@@ -65,7 +65,7 @@ export const ProjectsApp: React.FC = () => {
                             <div style={{
                                 width: '100%',
                                 height: '5px',
-                                background: p.lang === 'Rust' ? '#dea584' : p.lang === 'Python' ? '#3572A5' : p.lang === 'C++' ? '#f34b7d' : '#f1e05a',
+                                background: p.lang === 'Rust' ? '#dea584' : p.lang === 'Python' ? '#3572A5' : p.lang === 'C++' ? '#f34b7d' : p.lang === 'TypeScript' ? '#3178c6' : '#f1e05a',
                                 position: 'absolute',
                                 bottom: 0
                             }} />
