@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { AlertTriangle, Download } from 'lucide-react';
+import { io, Socket } from 'socket.io-client';
 
 const COLORS = [
     '#000000', // Black
@@ -14,6 +15,19 @@ const COLORS = [
     '#9900ff', // Purple
 ];
 
+// Connect to the local server
+// In a real deployed environment, this URL would need to be dynamic or an env var.
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3001';
+
+interface DrawData {
+    x: number;
+    y: number;
+    prevX: number;
+    prevY: number;
+    color: string;
+    size: number;
+}
+
 export const PaintApp: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isDrawing, setIsDrawing] = useState(false);
@@ -22,12 +36,53 @@ export const PaintApp: React.FC = () => {
     const [timeLeft, setTimeLeft] = useState('');
     const [showDisclaimer, setShowDisclaimer] = useState(true);
 
+    // Track previous coordinates for smooth lines
+    const prevPos = useRef<{ x: number, y: number } | null>(null);
+    const socketRef = useRef<Socket | null>(null);
+
     // Disclaimer Check
     useEffect(() => {
         const hasAgreed = localStorage.getItem('paint_disclaimer_agreed');
         if (hasAgreed) {
             setShowDisclaimer(false);
         }
+    }, []);
+
+    // Socket Connection
+    useEffect(() => {
+        socketRef.current = io(SERVER_URL);
+
+        socketRef.current.on('connect', () => {
+            console.log('Connected to Paint Server');
+        });
+
+        socketRef.current.on('load_history', (history: DrawData[]) => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            // Clear first (in case of re-connect)
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Replay history
+            history.forEach(data => {
+                drawLine(ctx, data.prevX, data.prevY, data.x, data.y, data.color, data.size);
+            });
+        });
+
+        socketRef.current.on('draw_remote', (data: DrawData) => {
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            drawLine(ctx, data.prevX, data.prevY, data.x, data.y, data.color, data.size);
+        });
+
+        return () => {
+            socketRef.current?.disconnect();
+        };
     }, []);
 
     const handleAgree = () => {
@@ -60,7 +115,7 @@ export const PaintApp: React.FC = () => {
         return () => clearInterval(timer);
     }, []);
 
-    // Canvas Setup & Persistence
+    // Canvas Setup
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -68,8 +123,7 @@ export const PaintApp: React.FC = () => {
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        // Initialize Canvas Size (fixed for consistency)
-        // In a real networked app, this would be a fixed grid.
+        // Initialize Canvas Size
         canvas.width = 800;
         canvas.height = 600;
 
@@ -77,56 +131,41 @@ export const PaintApp: React.FC = () => {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Load Data
-        const savedData = localStorage.getItem('community_paint_data');
-        const lastMonth = localStorage.getItem('paint_last_month');
-        const currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
-
-        if (savedData && lastMonth === currentMonth) {
-            const img = new Image();
-            img.src = savedData;
-            img.onload = () => {
-                ctx.drawImage(img, 0, 0);
-            };
-        } else {
-            // New month or no data => Clear/Reset
-            localStorage.setItem('paint_last_month', currentMonth);
-            localStorage.removeItem('community_paint_data');
-            // Background is already white
-        }
+        // Remove old localstorage usage here
     }, []);
 
-    const saveCanvas = () => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const data = canvas.toDataURL();
-        localStorage.setItem('community_paint_data', data);
+    // Helper for actual drawing
+    const drawLine = (ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number, strokeColor: string, size: number) => {
+        ctx.lineWidth = size;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = strokeColor;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
     };
 
     // Drawing Handlers
     const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
         setIsDrawing(true);
+        const pos = getPos(e);
+        prevPos.current = pos;
+
+        // Dot for single click?
+        // Ideally we draw a dot locally and emit it. 
+        // For simplicity, we'll wait for move, but to support dots we can emit a start/end same-point line.
         draw(e);
     };
 
     const stopDrawing = () => {
         setIsDrawing(false);
-        const canvas = canvasRef.current;
-        if (canvas) {
-            const ctx = canvas.getContext('2d');
-            ctx?.beginPath(); // Reset path
-            saveCanvas();
-        }
+        prevPos.current = null;
     };
 
-    const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
-        if (!isDrawing) return;
+    const getPos = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
         const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
+        if (!canvas) return { x: 0, y: 0 };
 
-        // Calculate position relative to canvas
         const rect = canvas.getBoundingClientRect();
         let clientX, clientY;
 
@@ -140,15 +179,38 @@ export const PaintApp: React.FC = () => {
 
         const x = (clientX - rect.left) * (canvas.width / rect.width);
         const y = (clientY - rect.top) * (canvas.height / rect.height);
+        return { x, y };
+    };
 
-        ctx.lineWidth = brushSize;
-        ctx.lineCap = 'round';
-        ctx.strokeStyle = color;
+    const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
+        if (!isDrawing) return;
 
-        ctx.lineTo(x, y);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(x, y);
+        const { x, y } = getPos(e);
+        const prev = prevPos.current || { x, y };
+
+        const canvas = canvasRef.current;
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+                // Draw locally immediately
+                drawLine(ctx, prev.x, prev.y, x, y, color, brushSize);
+            }
+        }
+
+        // Emit to server
+        if (socketRef.current && (prev.x !== x || prev.y !== y)) {
+            const data: DrawData = {
+                x,
+                y,
+                prevX: prev.x,
+                prevY: prev.y,
+                color,
+                size: brushSize
+            };
+            socketRef.current.emit('draw', data);
+        }
+
+        prevPos.current = { x, y };
     };
 
     const handleDownload = () => {
@@ -254,7 +316,7 @@ export const PaintApp: React.FC = () => {
 
             {/* Status Bar */}
             <div style={{ padding: '2px 5px', borderTop: '1px solid #fff', borderBottom: '1px solid #808080', fontSize: '11px' }}>
-                Mode: Community_V1 // Local_Persistence_Active
+                Mode: Community_Online_V2 // Persistence: Server
             </div>
 
             {/* Disclaimer Modal */}
@@ -274,15 +336,15 @@ export const PaintApp: React.FC = () => {
                             WARNING
                         </div>
                         <div style={{ padding: '15px', textAlign: 'center' }}>
-                            <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>COMMUNITY PAINT PROTOCOL</p>
+                            <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>ONLINE COMMUNITY PAINT</p>
                             <p style={{ fontSize: '12px', lineHeight: '1.4' }}>
-                                This canvas is open to the public.
+                                This canvas is SHARED LIVE with everyone online.
                                 <br /><br />
                                 <strong>I AM NOT RESPONSIBLE FOR WHAT OTHERS DRAW HERE.</strong>
                                 <br /><br />
                                 Content resets automatically every month.
                                 <br />
-                                Please keep it cool.
+                                Be nice.
                             </p>
                             <button className="win98-btn" onClick={handleAgree} style={{ marginTop: '15px', padding: '5px 20px', fontWeight: 'bold' }}>
                                 I UNDERSTAND

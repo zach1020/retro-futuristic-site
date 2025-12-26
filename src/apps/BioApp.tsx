@@ -41,7 +41,7 @@ export const BioApp: React.FC = () => {
                 lineHeight: '1.5'
             }}>
                 <div style={{ marginBottom: '15px', textAlign: 'center', borderBottom: '1px dashed #999', paddingBottom: '10px' }}>
-                    <a href="/UpdatedResumeZachBohl2026.docx.pdf" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
+                    <a href="/UpdatedResumeZachBohl2026.pdf" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
                         [Download Resume]
                     </a>
                 </div>
@@ -67,7 +67,7 @@ export const BioApp: React.FC = () => {
                 </p>
 
                 <div style={{ marginTop: '15px', marginBottom: '15px', textAlign: 'center', borderTop: '1px dashed #999', paddingTop: '10px' }}>
-                    <a href="/UpdatedResumeZachBohl2026.docx.pdf" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
+                    <a href="/UpdatedResumeZachBohl2026.pdf" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
                         [Download Resume]
                     </a>
                 </div>

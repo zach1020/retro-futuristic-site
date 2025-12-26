@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: retro-paint-server
+    env: node
+    buildCommand: npm install
+    startCommand: npm run server
+    envVars:
+      - key: PORT
+        value: 10000
+    plan: free
