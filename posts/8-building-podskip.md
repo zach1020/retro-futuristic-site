@@ -1,3 +1,9 @@
+---
+id: 8
+title: "Building PodSkip: A Dream Eight Years in the Making"
+date: "Jan 24, 2026"
+---
+
 # Building PodSkip: A Dream Eight Years in the Making
 
 ## The Idea That Wouldn't Leave Me Alone
