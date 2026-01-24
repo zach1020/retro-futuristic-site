@@ -1,9 +1,4 @@
----
-id: 8
-title: "Building PodSkip: A Dream Six Years in the Making"
-date: "Jan 24, 2026"
----
-# Building PodSkip: A Dream Six Years in the Making
+# Building PodSkip: A Dream Eight Years in the Making
 
 ## The Idea That Wouldn't Leave Me Alone
 
@@ -103,4 +98,4 @@ And if you have feedback — things that don't work, features you want, ads that
 
 Thanks for reading. And thanks for letting me share something I've wanted to build for a really, really long time.
 
-- Zach
+— Zach (& Claude)
