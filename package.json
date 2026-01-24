@@ -8,11 +8,15 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "node server/index.js"
+    "server": "node server/index.js",
+    "publish": "node scripts/sync-posts.js",
+    "watch-posts": "node scripts/sync-posts.js --watch"
   },
   "dependencies": {
+    "chokidar": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
