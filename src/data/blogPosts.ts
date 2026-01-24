@@ -1,9 +1,9 @@
 export const posts = [
-    {
-        id: 8,
-        title: 'Building PodSkip: A Dream Six Years in the Making',
-        date: 'Jan 24, 2026',
-        content: `# Building PodSkip: A Dream Six Years in the Making
+  {
+    id: 8,
+    title: 'Building PodSkip: A Dream Six Years in the Making',
+    date: 'Jan 24, 2026',
+    content: `# Building PodSkip: A Dream Six Years in the Making
 
 ## The Idea That Wouldn't Leave Me Alone
 
@@ -103,14 +103,14 @@ And if you have feedback — things that don't work, features you want, ads that
 
 Thanks for reading. And thanks for letting me share something I've wanted to build for a really, really long time.
 
-— Zach
-\`
+- Zach
+`
   },
   {
     id: 7,
     title: 'How I Built a Discord Bot That Lets Me Manage My Mac Files From My Phone',
     date: 'Jan 16, 2026',
-    content: \`# How I Built a Discord Bot That Lets Me Manage My Mac Files From My Phone
+    content: `# How I Built a Discord Bot That Lets Me Manage My Mac Files From My Phone
 
 Ever been lying in bed, phone in hand, and thought "I really wish I could create a quick note on my Desktop right now"? Or maybe you're out and about and need to check if you saved that important file before a meeting?
 
@@ -659,11 +659,11 @@ The full source code is available on my GitHub if you want to grab it and custom
 
 Happy building!`
   },
-{
-  id: 6,
+  {
+    id: 6,
     title: 'How I Built an MCP Server to Let Claude Control My Mac',
-      date: 'Jan 16, 2026',
-        content: `# How I Built an MCP Server to Let Claude Control My Mac
+    date: 'Jan 16, 2026',
+    content: `# How I Built an MCP Server to Let Claude Control My Mac
 
 *Give your AI assistant superpowers on macOS — opening apps, closing windows, and managing your desktop with simple conversation.*
 
@@ -1370,12 +1370,12 @@ Happy hacking! 🚀
 
 *Have questions or feedback? Drop a comment below or reach out on Twitter.*
 `
-},
-{
-  id: 5,
+  },
+  {
+    id: 5,
     title: 'A Late-Night Foray into AI with a Quantum Spin',
-      date: 'Jan 14, 2026',
-        content: `I’m sitting here, scribbling my little blog post on my tablet, waiting for the future to wash over us all. A revolution is well underway.
+    date: 'Jan 14, 2026',
+    content: `I’m sitting here, scribbling my little blog post on my tablet, waiting for the future to wash over us all. A revolution is well underway.
 
 Have you noticed that computers have taken over the world as of late? You can even talk to them now, and they talk back! Interesting.
 
@@ -1429,12 +1429,12 @@ It may be possible, with quantum algorithms, to tease out the structures—the p
 That could indeed be useful, especially where classical techniques fail. Techniques that are inspired by quantum mechanics, at least, could in theory add more tools to our alignment toolbox.
 
 How much did you hate this article? Or did you get this far? (I wouldn't blame you if you didn't!) Feel free to yell at me on X @Elroy_Muscato :)`
-},
-{
-  id: 4,
+  },
+  {
+    id: 4,
     title: 'Vibe Coding My Way Into 2026',
-      date: 'Dec 23, 2025',
-        content: `_Ah, computers! Such intelligent creatures…_
+    date: 'Dec 23, 2025',
+    content: `_Ah, computers! Such intelligent creatures…_
 
 Going into the new year, and I mean really _going into it_ with that strange January cocktail of ambition, mild panic, and an overactive sense of possibility, I realized I wanted to revamp my personal portfolio website for 2026. Not refresh it. Not “iterate” on it. Revamp it in the biblical sense. Burn it down conceptually and rebuild something that actually sounded like me when it spoke.
 
@@ -1475,12 +1475,12 @@ This website is a conversation with those creatures. A record of how I’m think
 The plumbing is modern. The tools are powerful. The thinking is mine. And for now, at least, it feels honest.
 
 --Zach Bohl (via ChatGPT), Tuesday, December 23, 2025`
-},
-{
-  id: 1,
+  },
+  {
+    id: 1,
     title: 'Hello, Quantum World — My First Steps with IBM Quantum & Qiskit',
-      date: 'Oct 14, 2025',
-        content: `## Introduction
+    date: 'Oct 14, 2025',
+    content: `## Introduction
 
 I recently followed IBM Quantum's "Hello world" tutorial and got my hands dirty with qubits, entanglement, and the real challenges of running circuits on quantum hardware. In this post I'll walk through what I learned, show code snippets, and reflect on what surprised me (and what I'm excited to try next).
 
@@ -1553,12 +1553,12 @@ def get_qc_for_n_qubit_GHZ_state(n):
 * Dive deeper into error mitigation techniques.
 * Try VQE (Variational Quantum Eigensolver) or QAOA.
 * Experiment with hybrid quantum-classical workflows.`
-},
-{
-  id: 2,
+  },
+  {
+    id: 2,
     title: 'Revisiting The Brothers Karamazov at 30',
-      date: 'Jul 23, 2025',
-        content: `Ten years ago, at the age of 20, I cracked open one of the finest works of literature humanity has ever produced. Did I understand it? Will I understand it now?
+    date: 'Jul 23, 2025',
+    content: `Ten years ago, at the age of 20, I cracked open one of the finest works of literature humanity has ever produced. Did I understand it? Will I understand it now?
 
 *The Brothers Karamazov* by Fyodor Dostoevsky is a beast. 900 pages of Russian philosophy wrestling with faith, evil, family, and murder. I remember sitting in a diner at 1 AM reading Ivan's conversation with the devil. The dread was palpable.
 
@@ -1569,12 +1569,12 @@ This isn't about fishing for faith; it's a retrospective. I don't remember much 
 Life threw some wild stuff at me—heartbreaking and hilarious. A retrospective at 30 might seem gauche, but I just want to make cool shit for my bros. 
 
 So, what are you reading? Me? I'm reading Dostoevsky. Again.`
-},
-{
-  id: 3,
+  },
+  {
+    id: 3,
     title: 'From Quantum Math to Synth Knobs: A Strange Journey Through Brains, Qubits, and Sound',
-      date: 'Jan 20, 2025',
-        content: `It all started with a simple question: how do you make giant language models faster?
+    date: 'Jan 20, 2025',
+    content: `It all started with a simple question: how do you make giant language models faster?
 
 Engineers have found clever ways to trim them down. Quantization shrinks brains into 8-bit or 4-bit. Speculative decoding lets a small "draft model" write ahead. It's all about shaving milliseconds off billions of calculations.
 
@@ -1606,5 +1606,5 @@ The theme is fingerprints:
 * Synth patches hide behind parameter fingerprints.
 
 Whether it's GPUs or qubits, the puzzle is always about identifying the hidden signature in a sea of noise.`
-}
+  }
 ];
