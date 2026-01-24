@@ -1,5 +1,112 @@
 export const posts = [
   {
+    id: 8,
+    title: 'Building PodSkip: A Dream Six Years in the Making',
+    date: 'Jan 24, 2026',
+    content: `# Building PodSkip: A Dream Six Years in the Making
+
+## The Idea That Wouldn't Leave Me Alone
+
+I've wanted to build PodSkip since 2018.
+
+Back then, I was deep into podcasts — commuting, working out, doing dishes, whatever. And every single time, without fail, I'd be locked into some fascinating conversation about technology or philosophy or whatever, and then suddenly: "This episode is brought to you by—"
+
+And I'd fumble for my phone. Try to hit the 30-second skip. Overshoot. Go back. Undershoot. Miss the first sentence of actual content. Repeat three more times per episode.
+
+It drove me insane.
+
+I remember thinking: "There has to be a way to automate this. The ads sound *different*. They have a different cadence, different production quality, different energy. A computer should be able to figure this out."
+
+But in 2018? The tech just wasn't there. Not for a solo developer without a machine learning research team and a massive dataset. Speech-to-text was clunky and expensive. Running inference was slow. The idea went into my mental backlog — that graveyard of "someday" projects that every developer has.
+
+## Fast Forward to Now
+
+Here's the thing about technology: it moves fast, and sometimes it moves in exactly the direction you were hoping for.
+
+Over the past couple years, AI has gotten absurdly good at transcription. We're talking fast, cheap, and accurate. Cloud APIs can process an hour-long podcast episode in seconds. And large language models have gotten genuinely good at understanding context — at recognizing when someone shifts from "authentic conversation" to "reading ad copy."
+
+I realized that the project I couldn't build in 2018 was suddenly... buildable.
+
+So I built it.
+
+## What PodSkip Actually Does
+
+The core idea is simple: you paste a podcast RSS feed, pick an episode, and hit play. Behind the scenes, PodSkip:
+
+1. Downloads the episode audio
+2. Sends it through a cloud transcription service
+3. Analyzes the transcript to detect ad segments
+4. Marks those timestamps
+5. Automatically mutes the audio when you hit an ad during playback
+
+No manual skipping. No fumbling for your phone. Just seamless listening.
+
+For Pro users, you can also download ad-free MP3s — the ads get stripped out entirely, and you get a clean file to listen to offline however you want.
+
+## The Vibe-Coding Experience
+
+I'm going to be real with you: I vibe-coded a lot of this with Claude Code.
+
+If you're not familiar with the term, "vibe-coding" is basically when you describe what you want to build in natural language and let an AI help you write the code. You iterate fast, you don't get bogged down in boilerplate, and you can focus on the actual product instead of fighting with syntax.
+
+Was it a perfectly architected codebase from day one? Absolutely not. Did I ship something that works and that people can actually use? Yes.
+
+I've spent a lot of my career worrying about whether I'm a "real" programmer, whether I understand things deeply enough, whether I'm relying too much on tools and abstractions. And honestly? Building PodSkip helped me let go of some of that. The goal was never to prove I could write everything from scratch. The goal was to make something useful. Claude Code helped me do that faster than I ever could have alone.
+
+The future of software development is collaborative — humans and AI working together. I'm here for it.
+
+## The Challenges (Because Of Course There Were Challenges)
+
+This project wasn't just smooth sailing. A few things that made me want to throw my laptop out the window:
+
+**Pre-roll ads are sneaky.** Some podcasts start with an ad before any content. Detecting those required different logic because there's no "transition" to detect — you're just dropped straight into an ad read.
+
+**Dynamic ad insertion is a thing.** A lot of podcasts now have ads that are inserted dynamically, which means the same episode might have different ads depending on when and where you download it. The timestamps can shift. The ads can change. It's chaos.
+
+**Accuracy is hard.** Getting to 94% accuracy sounds good until you realize that 6% of the time, you're either muting real content or letting ads through. Both feel bad. I spent a lot of time tuning the detection to minimize false positives while still catching the sneaky ads.
+
+**Audio processing is its own beast.** Dealing with different bitrates, formats, encoding issues, and making sure the web player handles everything smoothly — that's a whole skill set I had to level up on.
+
+But that's the fun part, right? Solving problems you've never solved before. Learning things you didn't know you needed to learn.
+
+## Why This Matters to Me
+
+I've always believed that AI should make people's lives easier in tangible, everyday ways.
+
+Not just "AI will revolutionize industries" in some abstract sense. I mean: AI should save you from the small annoyances. The friction. The tedious stuff that adds up over time.
+
+Muting podcast ads isn't going to change the world. But it might make your commute a little better. It might let you stay in flow during a workout. It might give you back a few minutes of your day that would otherwise be spent fumbling with skip buttons.
+
+That's the kind of AI application I care about. Practical. Human-centered. Actually useful.
+
+And honestly? I'm just super gassed that current technology makes this possible. Six years ago, this was a pipe dream. Now it's a real thing that real people can use. That feels incredible.
+
+## What's Next
+
+PodSkip works for audio podcasts right now, but I'm already thinking about what's next:
+
+**Video podcasts.** YouTube, Spotify video, all of that. The same fundamental problem exists — ads interrupting content — and the same solution should apply. Detect the ad segments, skip or mute them, let people watch in peace.
+
+**Videos in general.** Why stop at podcasts? Long-form YouTube content, lectures, conference talks — anything with mid-roll ads could benefit from this kind of automatic detection.
+
+I'm not sure exactly what the roadmap looks like yet, but the foundation is there. The hard part — accurate ad detection — is solved (or at least solved enough). Extending it to new formats is mostly an engineering problem.
+
+## Try It Out
+
+If you're a podcast listener who's ever been annoyed by ads, I'd love for you to give PodSkip a try.
+
+The free tier gives you 3 episodes per month — enough to see if it works for the shows you listen to. If you like it, Pro is $4.99/month for 30 episodes plus the ad-free MP3 downloads.
+
+**[podskip.lol](https://podskip.lol)**
+
+And if you have feedback — things that don't work, features you want, ads that got missed — I genuinely want to hear it. This is a passion project, and I'm building it for people like me who just want to enjoy their podcasts without interruption.
+
+Thanks for reading. And thanks for letting me share something I've wanted to build for a really, really long time.
+
+— Zach
+\`
+  },
+  {
     id: 7,
     title: 'How I Built a Discord Bot That Lets Me Manage My Mac Files From My Phone',
     date: 'Jan 16, 2026',
@@ -552,11 +659,11 @@ The full source code is available on my GitHub if you want to grab it and custom
 
 Happy building!`
   },
-  {
-    id: 6,
+{
+  id: 6,
     title: 'How I Built an MCP Server to Let Claude Control My Mac',
-    date: 'Jan 16, 2026',
-    content: `# How I Built an MCP Server to Let Claude Control My Mac
+      date: 'Jan 16, 2026',
+        content: `# How I Built an MCP Server to Let Claude Control My Mac
 
 *Give your AI assistant superpowers on macOS — opening apps, closing windows, and managing your desktop with simple conversation.*
 
@@ -1263,12 +1370,12 @@ Happy hacking! 🚀
 
 *Have questions or feedback? Drop a comment below or reach out on Twitter.*
 `
-  },
-  {
-    id: 5,
+},
+{
+  id: 5,
     title: 'A Late-Night Foray into AI with a Quantum Spin',
-    date: 'Jan 14, 2026',
-    content: `I’m sitting here, scribbling my little blog post on my tablet, waiting for the future to wash over us all. A revolution is well underway.
+      date: 'Jan 14, 2026',
+        content: `I’m sitting here, scribbling my little blog post on my tablet, waiting for the future to wash over us all. A revolution is well underway.
 
 Have you noticed that computers have taken over the world as of late? You can even talk to them now, and they talk back! Interesting.
 
@@ -1322,12 +1429,12 @@ It may be possible, with quantum algorithms, to tease out the structures—the p
 That could indeed be useful, especially where classical techniques fail. Techniques that are inspired by quantum mechanics, at least, could in theory add more tools to our alignment toolbox.
 
 How much did you hate this article? Or did you get this far? (I wouldn't blame you if you didn't!) Feel free to yell at me on X @Elroy_Muscato :)`
-  },
-  {
-    id: 4,
+},
+{
+  id: 4,
     title: 'Vibe Coding My Way Into 2026',
-    date: 'Dec 23, 2025',
-    content: `_Ah, computers! Such intelligent creatures…_
+      date: 'Dec 23, 2025',
+        content: `_Ah, computers! Such intelligent creatures…_
 
 Going into the new year, and I mean really _going into it_ with that strange January cocktail of ambition, mild panic, and an overactive sense of possibility, I realized I wanted to revamp my personal portfolio website for 2026. Not refresh it. Not “iterate” on it. Revamp it in the biblical sense. Burn it down conceptually and rebuild something that actually sounded like me when it spoke.
 
@@ -1368,12 +1475,12 @@ This website is a conversation with those creatures. A record of how I’m think
 The plumbing is modern. The tools are powerful. The thinking is mine. And for now, at least, it feels honest.
 
 --Zach Bohl (via ChatGPT), Tuesday, December 23, 2025`
-  },
-  {
-    id: 1,
+},
+{
+  id: 1,
     title: 'Hello, Quantum World — My First Steps with IBM Quantum & Qiskit',
-    date: 'Oct 14, 2025',
-    content: `## Introduction
+      date: 'Oct 14, 2025',
+        content: `## Introduction
 
 I recently followed IBM Quantum's "Hello world" tutorial and got my hands dirty with qubits, entanglement, and the real challenges of running circuits on quantum hardware. In this post I'll walk through what I learned, show code snippets, and reflect on what surprised me (and what I'm excited to try next).
 
@@ -1446,12 +1553,12 @@ def get_qc_for_n_qubit_GHZ_state(n):
 * Dive deeper into error mitigation techniques.
 * Try VQE (Variational Quantum Eigensolver) or QAOA.
 * Experiment with hybrid quantum-classical workflows.`
-  },
-  {
-    id: 2,
+},
+{
+  id: 2,
     title: 'Revisiting The Brothers Karamazov at 30',
-    date: 'Jul 23, 2025',
-    content: `Ten years ago, at the age of 20, I cracked open one of the finest works of literature humanity has ever produced. Did I understand it? Will I understand it now?
+      date: 'Jul 23, 2025',
+        content: `Ten years ago, at the age of 20, I cracked open one of the finest works of literature humanity has ever produced. Did I understand it? Will I understand it now?
 
 *The Brothers Karamazov* by Fyodor Dostoevsky is a beast. 900 pages of Russian philosophy wrestling with faith, evil, family, and murder. I remember sitting in a diner at 1 AM reading Ivan's conversation with the devil. The dread was palpable.
 
@@ -1462,12 +1569,12 @@ This isn't about fishing for faith; it's a retrospective. I don't remember much 
 Life threw some wild stuff at me—heartbreaking and hilarious. A retrospective at 30 might seem gauche, but I just want to make cool shit for my bros. 
 
 So, what are you reading? Me? I'm reading Dostoevsky. Again.`
-  },
-  {
-    id: 3,
+},
+{
+  id: 3,
     title: 'From Quantum Math to Synth Knobs: A Strange Journey Through Brains, Qubits, and Sound',
-    date: 'Jan 20, 2025',
-    content: `It all started with a simple question: how do you make giant language models faster?
+      date: 'Jan 20, 2025',
+        content: `It all started with a simple question: how do you make giant language models faster?
 
 Engineers have found clever ways to trim them down. Quantization shrinks brains into 8-bit or 4-bit. Speculative decoding lets a small "draft model" write ahead. It's all about shaving milliseconds off billions of calculations.
 
@@ -1499,5 +1606,5 @@ The theme is fingerprints:
 * Synth patches hide behind parameter fingerprints.
 
 Whether it's GPUs or qubits, the puzzle is always about identifying the hidden signature in a sea of noise.`
-  }
+}
 ];
