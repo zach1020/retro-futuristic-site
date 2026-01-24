@@ -703,4 +703,4 @@ Happy hacking! 🚀
 
 ---
 
-*Have questions or feedback? Drop a comment below or reach out on Twitter.*
+*Have questions or feedback? Feel free to reach out on Twitter @Elroy_Muscato.*
