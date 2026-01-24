@@ -1,9 +1,9 @@
 export const posts = [
-  {
-    id: 8,
-    title: 'Building PodSkip: A Dream Six Years in the Making',
-    date: 'Jan 24, 2026',
-    content: `# Building PodSkip: A Dream Six Years in the Making
+    {
+        id: 8,
+        title: 'Building PodSkip: A Dream Six Years in the Making',
+        date: 'Jan 24, 2026',
+        content: `# Building PodSkip: A Dream Six Years in the Making
 
 ## The Idea That Wouldn't Leave Me Alone
 
@@ -110,8 +110,7 @@ Thanks for reading. And thanks for letting me share something I've wanted to bui
     id: 7,
     title: 'How I Built a Discord Bot That Lets Me Manage My Mac Files From My Phone',
     date: 'Jan 16, 2026',
-    // Debug comment
-    content:`# How I Built a Discord Bot That Lets Me Manage My Mac Files From My Phone
+    content: \`# How I Built a Discord Bot That Lets Me Manage My Mac Files From My Phone
 
 Ever been lying in bed, phone in hand, and thought "I really wish I could create a quick note on my Desktop right now"? Or maybe you're out and about and need to check if you saved that important file before a meeting?
 
