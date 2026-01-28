@@ -7,6 +7,7 @@ import { Sun } from '../ui/Sun';
 import { Moon } from '../ui/Moon';
 import { User, Briefcase, Music, BookOpen, Settings, Brush } from 'lucide-react';
 import { PodskipBanner } from '../ui/PodskipBanner';
+import { CapyStreamBanner } from '../ui/CapyStreamBanner';
 import { BioApp } from '../../apps/BioApp';
 import { ProjectsApp } from '../../apps/ProjectsApp';
 import { MusicApp } from '../../apps/MusicApp';
@@ -296,7 +297,8 @@ export const Desktop: React.FC = () => {
                 </Window>
             ))}
 
-            {/* Promotional Banner */}
+            {/* Promotional Banners */}
+            <CapyStreamBanner />
             <PodskipBanner />
 
             {/* Taskbar */}
