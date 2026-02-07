@@ -26,7 +26,7 @@ export const BioApp: React.FC = () => {
                 </div>
                 <div>
                     <h2 style={{ margin: '0 0 5px 0', fontSize: '20px' }}>Zach</h2>
-                    <p style={{ margin: 0, fontSize: '14px' }}>Programming Generalist & AI Expert</p>
+                    <p style={{ margin: 0, fontSize: '14px' }}>Systems-Focused Software Engineer</p>
                 </div>
             </div>
 
@@ -41,25 +41,25 @@ export const BioApp: React.FC = () => {
                 lineHeight: '1.5'
             }}>
                 <div style={{ marginBottom: '15px', textAlign: 'center', borderBottom: '1px dashed #999', paddingBottom: '10px' }}>
-                    <a href="/UpdatedResumeZachBohl2026.docx.pdf" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
+                    <a href="/Zachary_Bohl_Resume_Systems_Programmer.docx" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
                         [Download Resume]
                     </a>
                 </div>
-                <p><strong>Role:</strong> Generalist / Maker / Researcher</p>
-                <p><strong>Specialties:</strong> Low-level, Full-stack, Cybersecurity, AI</p>
-                <p><strong>Education:</strong> MS Computer Science</p>
+                <p><strong>Role:</strong> Systems Programmer / Maker / Researcher</p>
+                <p><strong>Specialties:</strong> OS Kernels, Low-level, Full-stack, AI/ML</p>
+                <p><strong>Education:</strong> MS Computer Science — SMU</p>
                 <hr style={{ borderTop: '1px dotted #000', margin: '10px 0' }} />
 
                 <p style={{ marginBottom: '10px' }}>
-                    I am a passionate <strong>Programming Generalist</strong> who thrives in the deep end of the stack.
-                    Whether it's writing low-level code, architecting full-stack applications, or securing systems in cybersecurity,
-                    I love jumping through hoops to master any technology.
+                    I am a <strong>systems-focused software engineer</strong> with hands-on experience building OS kernels,
+                    memory allocators, and emulators in <strong>Rust, C, and C++</strong>.
+                    I thrive at the deep end of the stack — from bootloaders and interrupt handlers to full-stack web applications.
                 </p>
 
                 <p style={{ marginBottom: '10px' }}>
-                    I hold a graduate degree in <strong>Computer Science</strong> and pride myself on being a self-starter
-                    with an unyieldling passion for researching and building things. As an early adopter and expert in <strong>AI</strong>,
-                    I am constantly exploring the bleeding edge of what's possible.
+                    I hold an M.S. in <strong>Computer Science</strong> from SMU and pride myself on being a self-starter
+                    with an unyielding passion for researching and building things. Additional depth in <strong>quantum computing</strong>,
+                    <strong>compiler design</strong>, and <strong>AI/ML</strong>.
                 </p>
 
                 <p style={{ marginBottom: '10px' }}>
@@ -67,7 +67,7 @@ export const BioApp: React.FC = () => {
                 </p>
 
                 <div style={{ marginTop: '15px', marginBottom: '15px', textAlign: 'center', borderTop: '1px dashed #999', paddingTop: '10px' }}>
-                    <a href="/UpdatedResumeZachBohl2026.docx.pdf" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
+                    <a href="/Zachary_Bohl_Resume_Systems_Programmer.docx" download style={{ color: '#0000AA', textDecoration: 'underline', cursor: 'pointer', fontWeight: 'bold' }}>
                         [Download Resume]
                     </a>
                 </div>

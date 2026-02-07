@@ -1,12 +1,14 @@
 import React from 'react';
 
 const projects = [
-    { id: 7, title: 'ZPT2', desc: 'ZPT2', lang: 'TypeScript', url: 'https://github.com/zach1020/ZPT2' },
-    { id: 1, title: 'ai-journal', desc: 'AI-powered journaling app', lang: 'JavaScript', url: 'https://github.com/zach1020/ai-journal' },
-    { id: 2, title: 'Orthogonal-Bloch', desc: 'Quantum states visualization', lang: 'Python', url: 'https://github.com/zach1020/Orthogonal-Bloch' },
-    { id: 4, title: 'Chip-8-Emulator', desc: 'Chip-8 system emulator', lang: 'C++', url: 'https://github.com/zach1020/Chip-8-Emulator' },
+    { id: 6, title: 'RustybaraOS', desc: 'UNIX-like OS kernel in Rust', lang: 'Rust', url: 'https://github.com/zach1020/RustybaraOS' },
+    { id: 8, title: 'Slab Allocator', desc: 'O(1) GlobalAlloc slab allocator', lang: 'Rust', url: 'https://github.com/zach1020/RustybaraOS' },
+    { id: 4, title: 'Chip-8-Emulator', desc: 'Full Chip-8 virtual machine', lang: 'C++', url: 'https://github.com/zach1020/Chip-8-Emulator' },
+    { id: 7, title: 'ZPT2', desc: 'GPT-2 transformer from scratch', lang: 'TypeScript', url: 'https://github.com/zach1020/ZPT2' },
+    { id: 9, title: 'PodSkip', desc: 'AI podcast ad-detection', lang: 'Python', url: 'https://podskip.lol' },
     { id: 5, title: 'veryrandom', desc: 'Quantum RNG with Qiskit', lang: 'Python', url: 'https://github.com/zach1020/veryrandom' },
-    { id: 6, title: 'RustybaraOS', desc: 'OS reborn in Rust', lang: 'Rust', url: 'https://github.com/zach1020/RustybaraOS' },
+    { id: 2, title: 'Orthogonal-Bloch', desc: 'Quantum states visualization', lang: 'Python', url: 'https://github.com/zach1020/Orthogonal-Bloch' },
+    { id: 1, title: 'ai-journal', desc: 'AI-powered journaling app', lang: 'JavaScript', url: 'https://github.com/zach1020/ai-journal' },
 ];
 
 export const ProjectsApp: React.FC = () => {

@@ -424,7 +424,7 @@ async function processWithClaude(userMessage) {
   const systemPrompt = \`You are a helpful assistant that manages files on the user's Mac Desktop. Keep responses concise for mobile reading.\`;
 
   let response = await anthropic.messages.create({
-    model: "claude-sonnet-4-20250514",
+    model: "claude-sonnet-4-20241022",
     max_tokens: 1024,
     system: systemPrompt,
     tools,
@@ -445,7 +445,7 @@ async function processWithClaude(userMessage) {
     messages.push({ role: "user", content: toolResults });
 
     response = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: "claude-sonnet-4-20241022",
       max_tokens: 1024,
       system: systemPrompt,
       tools,
